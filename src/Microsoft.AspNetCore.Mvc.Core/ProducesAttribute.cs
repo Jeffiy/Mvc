@@ -88,9 +88,11 @@ namespace Microsoft.AspNetCore.Mvc
                 // Check if there are any IFormatFilter in the pipeline, and if any of them is active. If there is one,
                 // do not override the content type value.
                 var filtersInactive = true;
-                foreach (var filter in context.Filters)
+                for (int i = 0; i < context.Filters.Count; i++)
                 {
-                    if (filter is IFormatFilter && ((IFormatFilter)filter).GetFormat(context) != null)
+                    var filter = context.Filters[i] as IFormatFilter;
+
+                    if (filter != null && filter.GetFormat(context) != null)
                     {
                         filtersInactive = false;
                         break;
