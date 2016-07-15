@@ -48,6 +48,7 @@ namespace Microsoft.AspNetCore.Mvc.Razor.Internal
             Assert.Same(DependencyContextOptions.Default, options);
         }
 
+#if SOME_TEST_DEFINE
         [Fact]
         public void GetCompilationOptions_ReturnsCompilationOptionsFromDependencyContext()
         {
@@ -63,6 +64,7 @@ namespace Microsoft.AspNetCore.Mvc.Razor.Internal
             // Assert
             Assert.Contains("SOME_TEST_DEFINE", options.Defines);
         }
+#endif
 
         [Fact]
         public void Configure_UsesDefaultCompilationOptions()
